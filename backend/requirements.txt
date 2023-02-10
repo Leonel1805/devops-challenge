@@ -50,7 +50,7 @@ psycopg2-binary
 psycopg2-binary
 ptyprocess==0.6.0
 Pygments==2.3.1
-pygraphviz==1.5
+pygraphviz==1.10
 PyJWT==1.7.1
 pyparsing==2.3.0
 python-crontab==2.3.5
