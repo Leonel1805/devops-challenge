@@ -1,5 +1,9 @@
 # Usar una imagen base de Python
-FROM python:3.8-alpine
+FROM python:3.9.5-slim
+
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2
 
 # Establecer el directorio de trabajo
 WORKDIR /app
