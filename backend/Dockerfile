@@ -1,31 +1,25 @@
-# Usar una imagen base de Python
-FROM python:3.9.5-slim
+# Use python as the base image
+FROM python:3.8
 
-RUN apt-get update \
-    && apt-get -y install libpq-dev gcc \
-    && pip install psycopg2
-    
-RUN pip install setuptools~=57.5.0
-RUN apt-get install python3-dev python3-setuptools
-RUN apt-get install graphviz graphviz-dev
-RUN pip install pygraphviz==1.7
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV SECRET_KEY=45
 
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --upgrade Pillow
-
-RUN pip install django-celery
-
-# Establecer el directorio de trabajo
+# Set the working directory
 WORKDIR /app
 
-# Copiar los archivos necesarios
+# Copy the requirements.txt file
+COPY requirements.txt .
+
+RUN pip install --upgrade pip
+RUN pip install python-dev-tools
+RUN pip install psycopg2-binary
+
+# Install the dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application files
 COPY . .
-
-# Instalar los requisitos
-RUN pip install -r requirements.txt
-
-# Exponer el puerto 8000
-EXPOSE 8000
-
-# Ejecutar el comando para iniciar el servidor de Django
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+RUN echo "SECRET_KEY = '$SECRET_KEY'" >> backend/settings.py
+# Specify the command to run the application
+CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
