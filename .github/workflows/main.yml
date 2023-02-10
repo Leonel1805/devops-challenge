@@ -1,0 +1,24 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - Prueba--3
+
+env:
+  DOCKER_IMAGE: my-nginx
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build Docker Image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: ${{ env.DOCKER_IMAGE }}
