@@ -25,10 +25,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install Pillow
 
-RUN apt-get install python3-dev graphviz libgraphviz-dev pkg-config
-
-RUN pip install pygraphviz
-
 RUN pip install pygraphviz 
 
 
