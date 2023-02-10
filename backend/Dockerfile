@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install Pillow
 
-RUN pip install pygraphviz --install-option="--include-path=/usr/include/graphviz" --install-option="--library-path=/usr/lib/graphviz/"
+RUN apt-get install -y graphviz-dev"
 
 
 # Instalar los requisitos
