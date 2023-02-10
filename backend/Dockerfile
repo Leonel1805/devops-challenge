@@ -1,25 +1,27 @@
-# Use python as the base image
-FROM python:3.8
+# Usar una imagen base de Python
+FROM python:3.9.5-slim
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-ENV SECRET_KEY=45
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2
+    
+RUN python -m pip install --upgrade pip setuptools wheel
 
-# Set the working directory
+RUN python -m pip install Pillow
+
+RUN pip install --upgrade setuptools
+
+# Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copy the requirements.txt file
-COPY requirements.txt .
+# Copiar los archivos necesarios
+COPY . .
 
-RUN pip install --upgrade pip
-RUN pip install python-dev-tools
-RUN pip install psycopg2-binary
-
-# Install the dependencies
+# Instalar los requisitos
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application files
-COPY . .
-RUN echo "SECRET_KEY = '$SECRET_KEY'" >> backend/settings.py
-# Specify the command to run the application
-CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+# Exponer el puerto 8000
+EXPOSE 8000
+
+# Ejecutar el comando para iniciar el servidor de Django
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
