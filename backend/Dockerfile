@@ -5,9 +5,11 @@ RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
     && pip install psycopg2
     
-RUN python -m pip install --upgrade pip setuptools wheel
+RUN pip install setuptools~=57.5.0
 
 RUN python -m pip install Pillow
+
+RUN pip install django-celery
 
 # Establecer el directorio de trabajo
 WORKDIR /app
