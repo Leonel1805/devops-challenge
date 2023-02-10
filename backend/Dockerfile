@@ -7,7 +7,7 @@ RUN apt-get update \
     
 RUN pip install setuptools~=57.5.0
 RUN sudo apt-get install python3-dev python3-setuptools
-RUN sudo apt install graphviz graphviz-dev
+RUN sudo apt-get install graphviz graphviz-dev
 RUN pip install pygraphviz==1.7
 
 RUN python3 -m pip install --upgrade pip
