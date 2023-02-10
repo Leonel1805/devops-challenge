@@ -2,6 +2,6 @@ version: '3.7'
 
 services:
   web:
-    image: my-nginx
+    image: leonel1805/my-nginx-image:latest
     ports:
       - 80:80
