@@ -10,6 +10,8 @@ COPY requirements.txt .
 # Install the required packages
 RUN pip install --upgrade setuptools
 RUN pip install --upgrade pip
+RUN apk update
+RUN pip install ipdb --upgrade
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the code to the working directory
