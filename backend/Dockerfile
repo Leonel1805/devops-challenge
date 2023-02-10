@@ -1,12 +1,13 @@
-FROM python:alpine
+# Usar una imagen base de Python
+FROM python:3.9.5-slim
 
-RUN apk --update add libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc openssl-dev curl
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2
+    
+RUN python -m pip install --upgrade pip setuptools wheel
 
-RUN apk add libjpeg zlib tiff freetype lcms libwebp tcl openjpeg
-
-RUN pip install Pillow
-
-RUN pip install --upgrade setuptools
+RUN python -m pip install Pillow
 
 # Establecer el directorio de trabajo
 WORKDIR /app
