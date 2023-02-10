@@ -1,8 +1,8 @@
 # Use an official Nginx image as the base image
-FROM nginx:latest
+FROM nginx:alpine
 
-# Copy the "index.html" file from the local directory to the default Nginx public directory
-COPY frontend/public/index.html /usr/share/nginx/html/index.html
+# Copy the index.html file from the current directory to the default Nginx directory
+COPY index.html /usr/share/nginx/html/
 
 # Expose port 80
 EXPOSE 80
