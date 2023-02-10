@@ -19,10 +19,14 @@ WORKDIR /app
 # Copiar los archivos necesarios
 COPY . .
 
+RUN apt-get update && apt-get install -y \
+    libjpeg-dev \
+    zlib1g-dev
+
+RUN pip install Pillow
+
+
 # Instalar los requisitos
-RUN apk add --no-cache jpeg-dev zlib-dev
-RUN apk add --no-cache --virtual .build-deps build-base linux-headers \
-    && pip install Pillow
 RUN pip install -r requirements.txt
 
 # Exponer el puerto 8000
