@@ -4,6 +4,10 @@ FROM python:3.9.5-slim
 RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
     && pip install psycopg2
+    
+RUN apk add -u zlib-dev jpeg-dev gcc musl-dev
+
+RUN python3 -m pip install --upgrade pip
 
 # Establecer el directorio de trabajo
 WORKDIR /app
