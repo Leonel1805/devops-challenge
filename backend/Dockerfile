@@ -9,6 +9,8 @@ RUN python -m pip install --upgrade pip setuptools wheel
 
 RUN python -m pip install Pillow
 
+RUN pip install --upgrade setuptools
+
 # Establecer el directorio de trabajo
 WORKDIR /app
 
