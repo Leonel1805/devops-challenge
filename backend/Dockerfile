@@ -1,21 +1,14 @@
-# Usar una imagen base de Python
-FROM python:3.9.5-slim
+FROM python:3.7-alpine
 
-RUN apt-get update \
-    && apt-get -y install libpq-dev gcc \
-    && pip install psycopg2
-    
-RUN python -m pip install --upgrade pip setuptools wheel
+RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev zlib-dev jpeg-dev graphviz-dev libpq
+RUN pip install --upgrade pip
+RUN pip install gunicorn
 
-RUN python -m pip install Pillow
+WORKDIR /backend
 
-RUN pip install --upgrade setuptools
+COPY . /backend/
 
-# Establecer el directorio de trabajo
-WORKDIR /app
-
-# Copiar los archivos necesarios
-COPY . .
+RUN python -m pip install -r requirements.txt
 
 # Instalar los requisitos
 RUN pip install -r requirements.txt
