@@ -20,6 +20,9 @@ WORKDIR /app
 COPY . .
 
 # Instalar los requisitos
+RUN apk add --no-cache jpeg-dev zlib-dev
+RUN apk add --no-cache --virtual .build-deps build-base linux-headers \
+    && pip install Pillow
 RUN pip install -r requirements.txt
 
 # Exponer el puerto 8000
