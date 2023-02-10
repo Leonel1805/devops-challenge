@@ -1,14 +1,18 @@
-FROM python:3.7-alpine
+FROM python:alpine
 
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev zlib-dev jpeg-dev graphviz-dev libpq
-RUN pip install --upgrade pip
-RUN pip install gunicorn
+RUN apk --update add libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc openssl-dev curl
 
-WORKDIR /backend
+RUN apk add libjpeg zlib tiff freetype lcms libwebp tcl openjpeg
 
-COPY . /backend/
+RUN pip install Pillow
 
-RUN python -m pip install -r requirements.txt
+RUN pip install --upgrade setuptools
+
+# Establecer el directorio de trabajo
+WORKDIR /app
+
+# Copiar los archivos necesarios
+COPY . .
 
 # Instalar los requisitos
 RUN pip install -r requirements.txt
