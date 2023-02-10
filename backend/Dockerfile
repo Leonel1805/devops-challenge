@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install Pillow
 
-RUN pip install pygraphviz
+RUN sudo apt-get install -y python-pygraphviz
 
 
 # Instalar los requisitos
