@@ -5,9 +5,9 @@ RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
     && pip install psycopg2
     
-RUN apk add -u zlib-dev jpeg-dev gcc musl-dev
+RUN python -m pip install --upgrade pip setuptools wheel
 
-RUN python3 -m pip install --upgrade pip
+RUN python -m pip install Pillow
 
 # Establecer el directorio de trabajo
 WORKDIR /app
