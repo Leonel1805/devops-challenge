@@ -6,8 +6,12 @@ RUN apt-get update \
     && pip install psycopg2
     
 RUN pip install setuptools~=57.5.0
+RUN sudo apt-get install python3-dev python3-setuptools
+RUN sudo apt install graphviz graphviz-dev
+RUN pip install pygraphviz==1.7
 
-RUN python -m pip install Pillow
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade Pillow
 
 RUN pip install django-celery
 
