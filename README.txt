@@ -1,4 +1,4 @@
-Buenas, paso a explicar lo realizado en este simple diagrama de red. Se trató de representar el desarrollo y funcionamiento de una apliación web con arquitectura basada en AWS, por lo cual para su funcionamiento se representó y cumplió cada requisito con funciones y servicos brindados por Amazon Web Ser. Si mas, una breve expliación de cada uno de los elementos representados y su funcionamiento en la arquitectura propuesta:
+Buenas, paso a explicar lo realizado en este simple diagrama de red. Se trató de representar el desarrollo y funcionamiento de una apliación web con arquitectura basada en AWS, por lo cual para su funcionamiento se representó y cumplió cada requisito con servicos brindados por Amazon Web Ser. Si mas, una breve expliación de cada uno de los elementos representados y su funcionamiento en la arquitectura propuesta:
 
 1) Frontend: Se usó un grupo de balanceadores de carga disponibles en la nube (AWS ELB) para distribuir la carga entre varios servidores web. Estos servidores web estarán ejecutando una aplicación de frontend que fue desarrollada en JavaScript. La aplicación de frontend se comunicará con el backend a través de una API REST.
 
